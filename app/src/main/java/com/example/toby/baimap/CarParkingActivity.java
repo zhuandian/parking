@@ -42,6 +42,7 @@ import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
+import com.example.toby.MapUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -105,7 +106,7 @@ public class CarParkingActivity extends AppCompatActivity {
         mButton = (Button) findViewById(R.id.button_go);
         mButton.setOnClickListener(new Button.OnClickListener() {//创建监听
             public void onClick(View v) {
-                openBaiduMap(mLatitude,mLatitude,currentParkingInfo.getLatitude(),currentParkingInfo.getLongitude(),"我的位置",currentParkingInfo.getName());
+                MapUtils.openBaiduMap(CarParkingActivity.this, mLatitude, mLatitude, currentParkingInfo.getLatitude(), currentParkingInfo.getLongitude(), "我的位置", currentParkingInfo.getName());
 //                openBaiduMap(39.981567, 116.431011, 40.981567, 120.431011, "我的位置", "天安门");
             }
 
@@ -264,13 +265,13 @@ public class CarParkingActivity extends AppCompatActivity {
 
 
                 //count = (Data) getApplication();
-                infos.add(new Info(mLatitude+0.001, mLongtitude, R.drawable.car1, "北大停车场",//004
+                infos.add(new Info(mLatitude + 0.001, mLongtitude, R.drawable.car1, "北大停车场",//004
                         "距离1000米", 10 + "", "004"));
-                infos.add(new Info(mLatitude-0.001, mLongtitude, R.drawable.car2, "樱花停车",//003
+                infos.add(new Info(mLatitude - 0.001, mLongtitude, R.drawable.car2, "樱花停车",//003
                         "距离800米", 12 + "", "003"));
-                infos.add(new Info(mLatitude, mLongtitude+0.001, R.drawable.car3, "和平东桥停车场",//002
+                infos.add(new Info(mLatitude, mLongtitude + 0.001, R.drawable.car3, "和平东桥停车场",//002
                         "距离500米", 2 + "", "002"));
-                infos.add(new Info(mLatitude, mLongtitude-0.001, R.drawable.car4, "易停停车场",//001
+                infos.add(new Info(mLatitude, mLongtitude - 0.001, R.drawable.car4, "易停停车场",//001
                         "距离2000m", 2 + "", "001"));
 
 
@@ -316,43 +317,6 @@ public class CarParkingActivity extends AppCompatActivity {
         MapStatusUpdate msu = MapStatusUpdateFactory.newLatLng(latLng);
         mBaiduMap.setMapStatus(msu);
 
-    }
-
-    //百度地图调用
-    private void openBaiduMap(double startLat, double startLon, double endLat, double endLon, String title, String destination) {
-        try {
-            StringBuilder loc = new StringBuilder();
-            loc.append("intent://map/direction?origin=latlng:");
-            loc.append(startLat);
-            loc.append(",");
-            loc.append(startLon);
-            loc.append("|name:");
-            loc.append(title);
-            loc.append("&destination=latlng:");
-            loc.append(endLat);
-            loc.append(",");
-            loc.append(endLon);
-            loc.append("|name:");
-            loc.append(destination);
-            loc.append("&mode=driving");
-            loc.append("&referer=Autohome|GasStation#Intent;scheme=bdapp;package=com.baidu.BaiduMap;end");
-            Intent intent = Intent.getIntent(loc.toString());
-            if (isInstallPackage("com.baidu.BaiduMap")) {
-                startActivity(intent); //启动调用
-                Log.e("GasStation", "百度地图客户端已经安装");
-            } else {
-                //Log.e("GasStation", "没有安装百度地图客户端");
-                Toast.makeText(context, "没有安装百度地图客户端",
-                        //location.getAddrStr(),
-                        Toast.LENGTH_SHORT).show();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private boolean isInstallPackage(String s) {
-        return new File("/data/data/" + s).exists();
     }
 
 
