@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/cns/.gradle/caches/modules-2/files-2.1/com.google.zxing/core/3.2.1/2287494d4f5f9f3a9a2bb6980e3f32053721b315/core-3.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2287494d4f5f9f3a9a2bb6980e3f32053721b315">
+        <dex dex="/Users/cns/demo/BaiduMap/app/build/intermediates/pre-dexed/debug/core-3.2.1_6117fde4ef7013cde24c690ccf31c1fe62304f2a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cns/.android/build-cache/28f338c2c9de1b73820fc907cb036c148620e678/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="19f281a785ca0eb5f6799fc7bf7ca199a9ca1e8b">
+        <dex dex="/Users/cns/demo/BaiduMap/app/build/intermediates/pre-dexed/debug/classes_e31301c681f37828831c90738c00474c0a4d8dd9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cns/.android/build-cache/3bf761ac7727cc7acbd759ccb17b3e1588b3c12a/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/cns/demo/BaiduMap/app/build/intermediates/pre-dexed/debug/classes_89f702fc6355fd5816e3892592cda9fe3cdbc311.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cns/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/25.3.1/bf8841d29fa39e077730e7a91222c2ce269fa7c9/support-annotations-25.3.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="/Users/cns/demo/BaiduMap/app/build/intermediates/pre-dexed/debug/support-annotations-25.3.1_52dd02141341728cb3df85613ac77ac1bef67930.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cns/.android/build-cache/69276bf042bc1ffbecc4b9e27d70610bd48d7aa9/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="/Users/cns/demo/BaiduMap/app/build/intermediates/pre-dexed/debug/classes_3f62da1e400c8c40d24814b35d20a82e2551d10d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cns/.gradle/caches/modules-2/files-2.1/com.mcxiaoke.volley/library/1.0.19/a8f23f65fc1e522ee4a1a697ee569901a46741fa/library-1.0.19.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a8f23f65fc1e522ee4a1a697ee569901a46741fa">
+        <dex dex="/Users/cns/demo/BaiduMap/app/build/intermediates/pre-dexed/debug/library-1.0.19_c0394ee7b85a7640a3f7d9092c14bc772f2f6635.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cns/.android/build-cache/89f436a4adc88494591f6c66a219485d0702ff78/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="/Users/cns/demo/BaiduMap/app/build/intermediates/pre-dexed/debug/classes_8df4964d0e44eb83ad644bb00b5cc559ccc1fa6d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cns/.android/build-cache/d09b68529026d29f6a2752211deb354e42763c67/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="/Users/cns/demo/BaiduMap/app/build/intermediates/pre-dexed/debug/classes_3bc53345d232cb32ce614716d17e8dc0d188d5fc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cns/.android/build-cache/407c0878819fd94df93098f479627b3770157ba3/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="/Users/cns/demo/BaiduMap/app/build/intermediates/pre-dexed/debug/classes_8de2e64711983f716cfb04a6d89ad0e9d5426cad.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cns/.android/build-cache/e3135bdda6a03fbece961b986e65fe403b9782fe/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="29c426f3ff52238291c86e939dff6bd8a877b86c">
+        <dex dex="/Users/cns/demo/BaiduMap/app/build/intermediates/pre-dexed/debug/classes_0a6b18253267484d87d2d73c42d1279b73f80172.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cns/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/8.5.1/bb67dad90bab7cd77a8f7f1b8442b47e3a2326bc/butterknife-annotations-8.5.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="bb67dad90bab7cd77a8f7f1b8442b47e3a2326bc">
+        <dex dex="/Users/cns/demo/BaiduMap/app/build/intermediates/pre-dexed/debug/butterknife-annotations-8.5.1_d6e6f9d2232e0817cda9d125ee6bbc257bd21ae7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cns/.gradle/caches/modules-2/files-2.1/com.android.support.constraint/constraint-layout-solver/1.0.2/b9cd8fc6bd15cb915735d34535db30ece0c44603/constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="/Users/cns/demo/BaiduMap/app/build/intermediates/pre-dexed/debug/constraint-layout-solver-1.0.2_398a4c5dae0f632833db025f097e47e785e6313b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cns/.android/build-cache/810e4e3a3695f41ca46ab85fb0b39ae2bc55c1f3/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
+        <dex dex="/Users/cns/demo/BaiduMap/app/build/intermediates/pre-dexed/debug/classes_60aa34b3bc450c1ef5a48ccc46447d85c0b1b813.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cns/.android/build-cache/98730d4e7a0d748763a7a270a028b4648571a7ef/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
+        <dex dex="/Users/cns/demo/BaiduMap/app/build/intermediates/pre-dexed/debug/classes_fa6ac8b3664ebf52089adeeba16c5e9884c27fe9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cns/.android/build-cache/ae2411b53e3cb469689cc837ad59dabce49e9245/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="/Users/cns/demo/BaiduMap/app/build/intermediates/pre-dexed/debug/classes_65344ce3c1073e9fd0cebf6d8d124d851929e494.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cns/.android/build-cache/64a0f05664404fbc1a009240d8ad2e0eed31e2dc/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="95519720620b553f63afc789beba9ad582807f7c">
+        <dex dex="/Users/cns/demo/BaiduMap/app/build/intermediates/pre-dexed/debug/classes_0e9024fc9f4d81ddc37b76e75bf0ce52231a25fc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cns/.android/build-cache/f42a01958988a0278a9e978ccf1e91a8eb082b8e/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="/Users/cns/demo/BaiduMap/app/build/intermediates/pre-dexed/debug/classes_3684ad987ac9d5b126c3d011b3e62c5585a339e7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cns/.android/build-cache/5f5f1d0c8b2c337307e298c70d727bce04825871/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="/Users/cns/demo/BaiduMap/app/build/intermediates/pre-dexed/debug/classes_62bee0f436fe973e0969b1fa38a4c5e5ce24c9db.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cns/demo/BaiduMap/app/libs/BaiduLBS_Android.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="595c3fca63e0e1f46752c294445310ee570ceb53">
+        <dex dex="/Users/cns/demo/BaiduMap/app/build/intermediates/pre-dexed/debug/BaiduLBS_Android_e11560ca322a4b07433bb11cc69610c27247b3f0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cns/.android/build-cache/3d859b18e7ceb228036469cdb629933bc3de56f0/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="/Users/cns/demo/BaiduMap/app/build/intermediates/pre-dexed/debug/classes_5bd48c9ac1d0c12a0b701f4066a35a2e79645c65.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cns/.android/build-cache/af69f86af9057637e28db02583e3f7db2df060de/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="/Users/cns/demo/BaiduMap/app/build/intermediates/pre-dexed/debug/classes_dcbfac0a40eb4b7f1bddd5d7c47af34c946e2875.jar" />
+    </item>
+
+</items>
