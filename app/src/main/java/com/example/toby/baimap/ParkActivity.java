@@ -1,115 +1,124 @@
 package com.example.toby.baimap;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import com.example.toby.baimap.entity.ParkingEntity;
+import com.example.toby.baimap.entity.UserEntity;
+import com.example.toby.baimap.utils.ImageToBase64;
+import com.example.toby.baimap.utils.PictureSelectorUtils;
+import com.luck.picture.lib.PictureSelector;
+import com.luck.picture.lib.config.PictureConfig;
+import com.luck.picture.lib.entity.LocalMedia;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.util.List;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
 
 public class ParkActivity extends AppCompatActivity {
-    private EditText EditParkid;
-    private Button ButtonPark;
-    public static Data app=null;
+    @BindView(R.id.EditParkid)
+    EditText EditParkid;
+    @BindView(R.id.iv_car)
+    ImageView ivCar;
+    @BindView(R.id.ButtonPark)
+    Button ButtonPark;
+
+    public static App app = null;
+    private String carString;
+    private Info currentParkingInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_park);
-        EditParkid= (EditText) findViewById(R.id.EditParkid);
-        ButtonPark= (Button) findViewById(R.id.ButtonPark);
-        ButtonPark.setOnClickListener(new View.OnClickListener() {
+        ButterKnife.bind(this);
+        currentParkingInfo = (Info) getIntent().getSerializableExtra("info");
+    }
+
+
+    //链接数据库，插入停车表
+    private void parking() {
+
+        final String park = EditParkid.getText().toString();
+
+        if (TextUtils.isEmpty(park)) {
+            Toast.makeText(this, "请输入停车场编号", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        ParkingEntity parkingEntity = new ParkingEntity();
+        parkingEntity.setCarImgUrl(carString);
+        parkingEntity.setParkingNumber(park);
+        parkingEntity.setLatitude(currentParkingInfo.getLatitude());
+        parkingEntity.setLongitude(currentParkingInfo.getLongitude());
+        parkingEntity.setParkingName(currentParkingInfo.getName());
+        parkingEntity.setPrice(currentParkingInfo.getPrice());
+        parkingEntity.setUserEntity(BmobUser.getCurrentUser(UserEntity.class));
+        parkingEntity.save(new SaveListener<String>() {
             @Override
-            public void onClick(View v) {
-                parking(v);
-               // ParkP();
-                jump();
+            public void done(String s, BmobException e) {
+                if (e == null) {
+                    Toast.makeText(ParkActivity.this, "停车成功...", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
             }
         });
 
     }
 
-    private void jump() {
-        Intent intent =new Intent();
-        intent.setClass(ParkActivity.this,ParkingState.class);
-        ParkActivity.this.startActivity(intent);
-    }
-    //链接数据库，插入停车表
-    private void parking(View v) {
-        final Data app= (Data) getApplication();
-        final String user=app.getB();
-        final String park=EditParkid.getText().toString();
-        app.setC(park);
-        if(TextUtils.isEmpty(park)){
-            Toast.makeText(this, "请输入停车场编号", Toast.LENGTH_LONG).show();
-            return;
-        }
-        RequestQueue requestQueue = Volley.newRequestQueue(ParkActivity.this);
-       // Log.e("sda","sad");
-        StringRequest stringRequest =new StringRequest(Request.Method.POST,"http://10.0.2.2/Project/parking.php",listener,errorListener){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> map=new HashMap<String, String>();
-                map.put("username",user);
-                map.put("parkid",park);
-                return  map;
-            }
-        };
-        requestQueue.add(stringRequest);
 
+    @OnClick({R.id.iv_car, R.id.ButtonPark})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.iv_car:
+                PictureSelectorUtils.selectImg(PictureSelector.create(this), 1);
+                break;
+            case R.id.ButtonPark:
+                parking();
+                break;
+        }
     }
 
-    Response.Listener<String> listener = new Response.Listener<String>(){
-        @Override
-        public void onResponse(String s) {
-            try {
-                JSONObject jsonObject = new JSONObject(s);
-                double parkp = jsonObject.getDouble("price");
-                final Data app= (Data) getApplication();
-                app.setD(parkp);
-                //String str = parkp+" ";
-                Log.e("ue",parkp+"");
-                Log.e("we",app.getD()+"");
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-                Log.e("TAG", "sadsadasdsa");
-                //mTextview.setText(str);
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == PictureConfig.CHOOSE_REQUEST) {
+                List<LocalMedia> selectList = PictureSelector.obtainMultipleResult(data);
+                if (selectList.size() > 0) {
+                    String imagePath = selectList.get(0).getCompressPath();
+                    decodePath2Bitmap(imagePath);
+                }
             }
-
-
-
-
         }
-    };
-    Response.ErrorListener errorListener = new Response.ErrorListener() {
-        @Override
-        public void onErrorResponse(VolleyError volleyError) {
-            Log.e("error", volleyError.getMessage(), volleyError);
+    }
+
+
+    /**
+     * 把指定路径的image资源转成Bitmap
+     *
+     * @param path
+     */
+    private void decodePath2Bitmap(String path) {
+        Bitmap bm = BitmapFactory.decodeFile(path);
+        if (bm != null) {
+            ivCar.setImageBitmap(bm);
+            carString = ImageToBase64.bitmap2Base64String(bm);
         }
-    };
-    //记录停车位价格
-
-
-
+    }
 }

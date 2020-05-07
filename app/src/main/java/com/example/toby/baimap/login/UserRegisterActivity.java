@@ -11,12 +11,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-
-
 import com.example.toby.baimap.R;
 import com.example.toby.baimap.entity.UserEntity;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
@@ -32,19 +31,16 @@ public class UserRegisterActivity extends Activity {
     TextView tvRegister;
     @BindView(R.id.et_phone)
     EditText etPhone;
-    @BindView(R.id.et_local)
-    EditText etLocal;
     private String userName;
     private String passWord;
     private String userPhone;
-    private String userLocal;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_register);
+        ButterKnife.bind(this);
     }
-
 
 
     @OnClick(R.id.tv_register)
@@ -56,15 +52,12 @@ public class UserRegisterActivity extends Activity {
         userName = etUsername.getText().toString();
         passWord = etPassword.getText().toString();
         userPhone = etPhone.getText().toString();
-        userLocal = etLocal.getText().toString();
-        if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(passWord) || TextUtils.isEmpty(userPhone) || TextUtils.isEmpty(userLocal)) {
+        if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(passWord) || TextUtils.isEmpty(userPhone)) {
             Toast.makeText(this, "请完善注册信息...", Toast.LENGTH_SHORT).show();
         } else {
             UserEntity userEntity = new UserEntity();
             userEntity.setUsername(userName);
-            userEntity.setLocal(userLocal);
             userEntity.setPassword(passWord);
-            userEntity.setUserPassword(passWord);
             userEntity.setMobilePhoneNumber(userPhone);
             userEntity.signUp(new SaveListener<Object>() {
                 @Override

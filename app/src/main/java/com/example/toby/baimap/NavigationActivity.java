@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.toby.MapUtils;
+import com.example.toby.baimap.utils.MapUtils;
 
 public class NavigationActivity extends AppCompatActivity {
 

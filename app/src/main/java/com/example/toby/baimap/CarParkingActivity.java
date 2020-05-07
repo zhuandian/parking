@@ -42,13 +42,12 @@ import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
-import com.example.toby.MapUtils;
 import com.example.toby.baimap.login.LoginActivity;
+import com.example.toby.baimap.utils.MyLocationUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -61,7 +60,7 @@ public class CarParkingActivity extends AppCompatActivity {
     //关于交互后台的
     //public static SelectActivity sel=
     private int num;
-    public static Data count = null;
+    public static App count = null;
     public static String npark, str = "001", str3;
     //定位
     private MyLocationListener mLocationListener;
@@ -110,7 +109,11 @@ public class CarParkingActivity extends AppCompatActivity {
                     Toast.makeText(context, "请先选择停车点...", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                MapUtils.openBaiduMap(CarParkingActivity.this, mLatitude, mLatitude, currentParkingInfo.getLatitude(), currentParkingInfo.getLongitude(), "我的位置", currentParkingInfo.getName());
+
+                Intent intent = new Intent(CarParkingActivity.this,ParkingDetailActivity.class);
+                intent.putExtra("info",currentParkingInfo);
+                startActivity(intent);
+
 //                openBaiduMap(39.981567, 116.431011, 40.981567, 120.431011, "我的位置", "天安门");
             }
 
@@ -133,14 +136,11 @@ public class CarParkingActivity extends AppCompatActivity {
                 distance.setText(currentParkingInfo.getDistance());
                 name.setText(currentParkingInfo.getName());
                 zan.setText(currentParkingInfo.getDistance());
-                str = currentParkingInfo.getUser();
+                str = currentParkingInfo.getUmber();
                 //count.setC("001");
                 Log.e("parkid", str);
-                find(str);
-                //zan.setText(npark);
-                //Toast.makeText(context,"剩余车位："+currentParkingInfo.getUser(),
-                //location.getAddrStr(),
-                //Toast.LENGTH_LONG).show();
+
+
 
                 mMarkerLy.setVisibility(View.VISIBLE);
 
@@ -249,6 +249,9 @@ public class CarParkingActivity extends AppCompatActivity {
             mLatitude = location.getLatitude();//39.98181;
 //            mLongtitude = 116.426876;
             mLongtitude = location.getLongitude();//116.426876;
+
+            MyLocationUtil.mLatitude = mLatitude;
+            MyLocationUtil.mLongtitude = mLongtitude;
             if (isFirstIn) {
                 LatLng latlng = new LatLng(mLatitude, mLongtitude);//经纬度
                 msu = MapStatusUpdateFactory.newLatLng(latlng);
@@ -258,15 +261,15 @@ public class CarParkingActivity extends AppCompatActivity {
                 infos = new ArrayList<Info>();
 
 
-                //count = (Data) getApplication();
+                //count = (App) getApplication();
                 infos.add(new Info(mLatitude + 0.001, mLongtitude, R.drawable.car1, "北大停车场",//004
-                        "距离1000米", 10 + "", "004"));
+                        "距离1000米", 10 , "004"));
                 infos.add(new Info(mLatitude - 0.001, mLongtitude, R.drawable.car2, "樱花停车",//003
-                        "距离800米", 12 + "", "003"));
+                        "距离800米", 12 , "003"));
                 infos.add(new Info(mLatitude, mLongtitude + 0.001, R.drawable.car3, "和平东桥停车场",//002
-                        "距离500米", 2 + "", "002"));
+                        "距离500米", 2 , "002"));
                 infos.add(new Info(mLatitude, mLongtitude - 0.001, R.drawable.car4, "易停停车场",//001
-                        "距离2000m", 2 + "", "001"));
+                        "距离2000m", 2 , "001"));
 
 
                 addOverlays(infos);
@@ -380,9 +383,14 @@ public class CarParkingActivity extends AppCompatActivity {
                 centerToMyLocation();
                 break;
             case R.id.car_start:
-                //扫描二维码
-                //customScan();
+
+                if (currentParkingInfo == null) {
+                    Toast.makeText(context, "请先选择停车点...", Toast.LENGTH_SHORT).show();
+                   break;
+                }
+
                 Intent intent = new Intent();
+                intent.putExtra("info",currentParkingInfo);
                 intent.setClass(CarParkingActivity.this, ParkActivity.class);
                 CarParkingActivity.this.startActivity(intent);
                 break;
@@ -400,56 +408,6 @@ public class CarParkingActivity extends AppCompatActivity {
         CarParkingActivity.this.startActivity(intent);
     }
 
-    //链接后台，获取停车位
-    private void find(final String parkid) {
-        RequestQueue requestQueue1 = Volley.newRequestQueue(CarParkingActivity.this);
-
-        StringRequest stringRequest1 = new StringRequest(Request.Method.POST, "http://10.0.2.2/Project/ParkCount.php", listener, errorListener) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> map = new HashMap<String, String>();
-                //map.put("username","2013014110");
-                map.put("parkid", parkid);
-                return map;
-            }
-        };
-        requestQueue1.add(stringRequest1);
-        //return npark;
-
-    }
-
-    Response.Listener<String> listener = new Response.Listener<String>() {
-        @Override
-        public void onResponse(String s) {
-            try {
-                JSONObject jsonObject = new JSONObject(s);
-                num = jsonObject.getInt("success");
-                str3 = jsonObject.getString("success2");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            String str = num + " ";
-            Log.e("we", str);
-            //npark=str;
-            TextView text = (TextView) findViewById(R.id.id_info_zan);
-            text.setText(str);
-            String str2 = "停车单价：" + str3 + "/h";
-            TextView text2 = (TextView) findViewById(R.id.id_info_distance);
-            text2.setText(str2);
-
-            //Toast.makeText(context,"车位余量："+str,Toast.LENGTH_SHORT).show();
-            //count = (Data) getApplication();
-            //count.setD(str);
-
-
-        }
-    };
-    Response.ErrorListener errorListener = new Response.ErrorListener() {
-        @Override
-        public void onErrorResponse(VolleyError volleyError) {
-            Log.e("error", volleyError.getMessage(), volleyError);
-        }
-    };
 
 }
 

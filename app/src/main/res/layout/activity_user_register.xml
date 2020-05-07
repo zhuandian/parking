@@ -55,22 +55,12 @@
             android:inputType="number"
             android:textSize="14sp" />
 
-        <EditText
-            android:layout_height="40dp"
-            android:background="@drawable/shape_login_bg"
-            android:paddingLeft="10dp"
-            android:id="@+id/et_local"
-            android:layout_width="match_parent"
-            android:layout_below="@+id/et_phone"
-            android:layout_margin="20dp"
-            android:hint="请输入地址"
-            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tv_register"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:layout_below="@+id/et_local"
+            android:layout_below="@+id/et_phone"
             android:layout_margin="20dp"
             android:background="@color/colorPrimary"
             android:gravity="center"

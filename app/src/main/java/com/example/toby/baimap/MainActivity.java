@@ -5,8 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.toby.MapUtils;
-
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -24,6 +22,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this,CarParkingActivity.class));
+            }
+        });
+
+
+        findViewById(R.id.tv_find_my_car).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,FindMyCarActivity.class));
             }
         });
     }

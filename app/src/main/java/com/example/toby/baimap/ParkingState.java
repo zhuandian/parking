@@ -60,10 +60,8 @@ public class ParkingState extends AppCompatActivity {
         mTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                final Data app= (Data) getApplication();
 
-                double parkp2=app.getD();//停车场单价
-                priceCount(parkp2);
+                priceCount(5);
                 handler.post(uiRunnable);
 
             }
@@ -107,49 +105,11 @@ public class ParkingState extends AppCompatActivity {
         //timer.stop();
     }
     private void ParkEnd(View v) {
-        RequestQueue requestQueue = Volley.newRequestQueue(ParkingState.this);
-        final Data app= (Data) getApplication();
-        final String pstr=price+"";
-        username=app.getB();
-        parkid=app.getC();
-
-        StringRequest stringRequest =new StringRequest(Request.Method.POST,"http://10.0.2.2/Project/charge.php",listener,errorListener){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> map=new HashMap<String, String>();
-                map.put("username",username);
-                map.put("parkid",parkid);
-                map.put("money",pstr);
-                return  map;
-            }
-        };
-        requestQueue.add(stringRequest);
 
         jump();
     }
 
-    Response.Listener<String> listener = new Response.Listener<String>(){
-        @Override
-        public void onResponse(String s) {
-            try {
-                JSONObject jsonObject = new JSONObject(s);
-                num = jsonObject.getInt("success");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            String str = num+" ";
-            Log.e("we",str);
 
-            //Log.e("TAG", s);
-            //mTextview.setText(str);
-        }
-    };
-    Response.ErrorListener errorListener = new Response.ErrorListener() {
-        @Override
-        public void onErrorResponse(VolleyError volleyError) {
-            Log.e("error", volleyError.getMessage(), volleyError);
-        }
-    };
 
     private void jump() {
         Intent intent =new Intent();

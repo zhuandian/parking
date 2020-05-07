@@ -19,12 +19,13 @@ import com.example.toby.baimap.entity.UserEntity;
 
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 
 
-public class LoginActivity   extends Activity {
+public class LoginActivity extends Activity {
     @BindView(R.id.et_username)
     EditText etUsername;
     @BindView(R.id.et_password)
@@ -41,10 +42,8 @@ public class LoginActivity   extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        ButterKnife.bind(this);
     }
-
-
-
 
 
     @OnClick({R.id.tv_user_register, R.id.tv_login})
@@ -73,8 +72,8 @@ public class LoginActivity   extends Activity {
                 public void done(UserEntity userEntity, BmobException e) {
                     if (e == null) {
                         SharedPreferences sharedPreferences = getSharedPreferences("config", Context.MODE_PRIVATE);
-                        sharedPreferences.edit().putString("userName",userName).commit();
-                        sharedPreferences.edit().putString("password",passWord).commit();
+                        sharedPreferences.edit().putString("userName", userName).commit();
+                        sharedPreferences.edit().putString("password", passWord).commit();
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         finish();
                     } else {
