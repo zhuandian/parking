@@ -2,6 +2,8 @@ package com.example.toby.baimap;
 
 import android.app.Application;
 
+import cn.bmob.v3.Bmob;
+
 
 public class Data extends Application {
     private String b;//账号
@@ -38,6 +40,7 @@ public class Data extends Application {
         d=12;
         //depot="002";
         super.onCreate();
+        Bmob.initialize(this, "1c99d26ffcbf12cbf1f1560d9ab09345");
     }
 }
 

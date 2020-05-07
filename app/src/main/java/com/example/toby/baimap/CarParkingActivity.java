@@ -43,6 +43,7 @@ import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.example.toby.MapUtils;
+import com.example.toby.baimap.login.LoginActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -53,7 +54,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//import static com.example.toby.baimap.R.id.location;
 
 public class CarParkingActivity extends AppCompatActivity {
     MapView mMapView = null;
@@ -77,7 +77,7 @@ public class CarParkingActivity extends AppCompatActivity {
     private BitmapDescriptor mMarker;
     private RelativeLayout mMarkerLy;
     //调用外部导航
-    private Button mButton, comment;
+    private Button mButton;
     private ArrayList<Info> infos;
     private Info currentParkingInfo;
     //扫描
@@ -106,22 +106,16 @@ public class CarParkingActivity extends AppCompatActivity {
         mButton = (Button) findViewById(R.id.button_go);
         mButton.setOnClickListener(new Button.OnClickListener() {//创建监听
             public void onClick(View v) {
+                if (currentParkingInfo == null) {
+                    Toast.makeText(context, "请先选择停车点...", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 MapUtils.openBaiduMap(CarParkingActivity.this, mLatitude, mLatitude, currentParkingInfo.getLatitude(), currentParkingInfo.getLongitude(), "我的位置", currentParkingInfo.getName());
 //                openBaiduMap(39.981567, 116.431011, 40.981567, 120.431011, "我的位置", "天安门");
             }
 
         });
-        comment = (Button) findViewById(R.id.selectCome);
-        comment.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //SelectComment(str);
-                Intent intent = new Intent();
-                intent.setClass(CarParkingActivity.this, SelectActivity.class);
-                intent.putExtra("str", str);
-                CarParkingActivity.this.startActivity(intent);
-            }
-        });
+
 
         mBaiduMap.setOnMarkerClickListener(new BaiduMap.OnMarkerClickListener() {
             @Override

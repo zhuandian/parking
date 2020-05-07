@@ -78,14 +78,6 @@
         android:background="@drawable/back"
         android:text="出发"
         />
-    <Button
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView"
-        android:layout_toRightOf="@+id/button_go"
-        android:text="评论"
-        android:id="@+id/selectCome"
-        android:background="@drawable/back"
-        />
+
 
 </RelativeLayout>

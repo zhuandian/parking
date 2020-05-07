@@ -29,7 +29,7 @@ import android.os.Handler;
 
 public class ParkingState extends AppCompatActivity {
     private TextView pView;
-    private Button parkEnd,commit,select;
+    private Button parkEnd;
     private Chronometer timer;
     private String username,parkid;
     private int num;
@@ -77,25 +77,8 @@ public class ParkingState extends AppCompatActivity {
 
             }
         });
-        commit= (Button) findViewById(R.id.comment);
-        commit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent2=new Intent();
-                intent2.setClass(ParkingState.this,CommitActivity.class);
-                ParkingState.this.startActivity(intent2);
-            }
-        });
-        /*select= (Button) findViewById(R.id.select);
-        select.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent2=new Intent();
-                intent2.setClass(ParkingState.this,SelectActivity.class);
-                ParkingState.this.startActivity(intent2);
 
-            }
-        });*/
+
 
     }
 

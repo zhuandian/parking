@@ -55,16 +55,14 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
-        <activity
-            android:name=".LoginActivity"
-            android:exported="true" />
-        <activity
-            android:name=".CommitActivity"
-            android:exported="true" />
         <activity android:name=".ParkingState" />
         <activity android:name=".ParkActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".SelectActivity" />
+        <activity android:name=".login.LoginActivity"/>
+        <activity android:name=".login.UserRegisterActivity"/>
+
+        <provider
+            android:name="cn.bmob.v3.util.BmobContentProvider"
+            android:authorities="com.example.toby.baimap.BmobContentProvider" />
     </application>
 
 </manifest>

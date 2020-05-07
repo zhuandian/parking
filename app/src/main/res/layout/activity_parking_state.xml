@@ -45,13 +45,7 @@
             android:layout_height="40dp"
             android:text="结束用车"
             android:layout_centerVertical="true"/>
-        <Button
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:id="@+id/comment"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/parkEnd"
-            android:text="评价"/>
+
 
 
     </RelativeLayout>
