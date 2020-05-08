@@ -32,5 +32,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this,FindMyCarActivity.class));
             }
         });
+
+        findViewById(R.id.tv_person_data).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,MineActivity.class));
+            }
+        });
     }
 }
