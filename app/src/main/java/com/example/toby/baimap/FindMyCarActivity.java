@@ -67,9 +67,9 @@ public class FindMyCarActivity extends AppCompatActivity {
                     } else {
                         tvTime.setText("停车时间：" + myCarInfo.getCreatedAt());
                         tvName.setText("停车场：" + myCarInfo.getParkingName());
-                        if (myCarInfo.getCarImgUrl().contains("http")){
+                        if (myCarInfo.getCarImgUrl().contains("http")) {
                             Glide.with(FindMyCarActivity.this).load(myCarInfo.getCarImgUrl()).into(ivCar);
-                        }else {
+                        } else {
                             ivCar.setImageBitmap(ImageToBase64.base64ToBitmap(myCarInfo.getCarImgUrl()));
                         }
                     }
@@ -101,24 +101,31 @@ public class FindMyCarActivity extends AppCompatActivity {
                 MapUtils.openBaiduMap(FindMyCarActivity.this, MyLocationUtil.mLatitude, MyLocationUtil.mLongtitude, myCarInfo.getLatitude(), myCarInfo.getLongitude(), "我的位置", myCarInfo.getParkingName());
                 break;
             case R.id.tv_finish_parking:
-                myCarInfo.delete(new UpdateListener() {
-                    @Override
-                    public void done(BmobException e) {
-                        if (e == null) {
-                            new AlertDialog.Builder(FindMyCarActivity.this)
-                                    .setTitle("请支付停车费")
-                                    .setMessage("改停车场的计费价格为 每小时" + myCarInfo.getPrice() + "元\n您的停车时间开始时间为\n请联系停车场管理人员付费！！")
-                                    .setCancelable(false)
-                                    .setNegativeButton("去支付", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
+
+                new AlertDialog.Builder(FindMyCarActivity.this)
+                        .setTitle("请支付停车费")
+                        .setMessage("改停车场的计费价格为 每小时" + myCarInfo.getPrice() + "元\n您的停车时间开始时间为：" + myCarInfo.getCreatedAt() + "\n请联系停车场管理人员付费！！")
+                        .setNegativeButton("去支付", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(final DialogInterface dialog, int which) {
+                                myCarInfo.delete(new UpdateListener() {
+                                    @Override
+                                    public void done(BmobException e) {
+                                        if (e == null) {
                                             dialog.dismiss();
                                             finish();
                                         }
-                                    }).show();
-                        }
+                                    }
+                                });
+
+                            }
+                        }).setPositiveButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
                     }
-                });
+                }).show();
+
                 break;
         }
     }
