@@ -23,6 +23,12 @@
         android:padding="10dp"
         android:text="ddddddd" />
 
+    <ImageView
+        android:id="@+id/iv_parking"
+        android:src="@drawable/ic_parking"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"

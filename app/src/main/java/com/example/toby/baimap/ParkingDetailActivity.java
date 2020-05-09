@@ -33,21 +33,22 @@ public class ParkingDetailActivity extends AppCompatActivity {
 
         currentParkingInfo = (Info) getIntent().getSerializableExtra("info");
 
-        tvPrice.setText("停车场单价："+currentParkingInfo.getPrice()+"/小时");
-        tvName.setText("停车场名字："+ currentParkingInfo.getName());
+        tvPrice.setText("停车场单价：" + currentParkingInfo.getPrice() + "/小时");
+        tvName.setText("停车场名字：" + currentParkingInfo.getName());
 
 
     }
 
-    @OnClick({R.id.tv_navigrtion, R.id.tv_parking})
+    @OnClick({R.id.tv_navigrtion, R.id.tv_parking, R.id.iv_parking})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_navigrtion:
+            case R.id.iv_parking:
                 MapUtils.openBaiduMap(ParkingDetailActivity.this, MyLocationUtil.mLatitude, MyLocationUtil.mLongtitude, currentParkingInfo.getLatitude(), currentParkingInfo.getLongitude(), "我的位置", currentParkingInfo.getName());
                 break;
             case R.id.tv_parking:
                 Intent intent = new Intent(this, ParkActivity.class);
-                intent.putExtra("info",currentParkingInfo);
+                intent.putExtra("info", currentParkingInfo);
                 startActivity(intent);
                 break;
         }
